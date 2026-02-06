@@ -259,6 +259,46 @@ footer a:hover { text-decoration: underline; }
 .modal-close { position:absolute; right:8px; top:6px; border:0; background:transparent; font-size:22px; cursor:pointer; color:#cfeffd }
 .modal-body input, .modal-body textarea { width:100%; padding:8px; margin-top:8px; border-radius:4px; border:1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); color: #e6f7ff }
 
+/* Contact form layout: two-column name/email, full-width larger message, equal buttons */
+.contact-form .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+.contact-form .form-box {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  color: inherit;
+  box-sizing: border-box;
+  min-height: 44px;
+  resize: vertical;
+}
+.contact-form .form-grid textarea.form-box {
+  grid-column: 1 / -1;
+  min-height: 140px;
+}
+.contact-form .button-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+.contact-form .button-row .form-box {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+}
+
+@media (max-width: 640px) {
+  .contact-form .form-grid { grid-template-columns: 1fr; }
+  .contact-form .button-row { flex-direction: column; }
+}
+
 /* Animated Projects CTA */
 .projects-cta {
   background: linear-gradient(90deg,#3ec5ff,#3ea3ff);
@@ -305,7 +345,7 @@ footer {
   text-align: center;
 }
 .mascot-wrapper {
-  transform: scale(1.8);      /* larger mascot area under name */
+     /* larger mascot area under name */
   transform-origin: top center;
   display: flex;
   justify-content: center;
@@ -324,7 +364,7 @@ footer {
 .mascot-track {
   position: relative;
   width: 100%;
-  height: 64px; /* taller progress bar */
+  height: 30px; /* taller progress bar */
   background: linear-gradient(90deg, rgba(90,200,225,0.06), rgba(62,163,255,0.04));
   border-radius: 10px;
   border: 1px solid rgba(166,214,255,0.08);
@@ -444,6 +484,30 @@ footer {
   animation: heartPop 0.9s ease-out;
   pointer-events: none;
   z-index: 90;
+}
+
+/* Heart popup when hearts reach threshold */
+.heart-popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2,6,23,0.35);
+  z-index: 9999;
+}
+.heart-popup-box {
+  background: linear-gradient(90deg,#ffffff,#e6f7ff);
+  color: #041318;
+  padding: 18px 28px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  border: 1px solid rgba(62,197,255,0.12);
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
 }
 
 @keyframes heartPop {

@@ -23,15 +23,12 @@ export default function About() {
     <section>
       <Navbar />
       
-      <h2>About Me</h2>
+      <h2>Hola!</h2>
       <p style={{maxWidth: '680px', lineHeight: '1.7'}}>
-        I am a software engineer focused on building reliable and scalable backend systems.  
-        I specialize in microservices architecture, distributed systems, and cloud-native development.  
-        My work centers around writing clean, maintainable code, improving system observability,  
-        and designing solutions that scale efficiently under real-world workloads.
+        I am a software engineer focused on building reliable and scalable AI-powered systems. I specialize in designing GenAI platforms, multi-agent architectures, and cloud-native services that orchestrate large language models efficiently. My work centers around optimizing prompts and inference workflows, improving observability for model-driven pipelines, and engineering robust, cost-effective solutions that scale securely in real-world AI applications.
       </p>
 
-      <h3>Professional Experience</h3>
+      <h2>Professional Experience</h2>
       <div className="experiences">
         {experiences.map(exp => (
           <div key={exp.id} className="card exp-card">

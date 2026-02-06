@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from 'react';
 
 export default function CatchUp() {
-  // heart count from Po double-clicks
   const [hearts, setHearts] = useState(0);
+  const [showHeartPopup, setShowHeartPopup] = useState(false);
 
   useEffect(() => {
-    const handler = () => setHearts(h => h + 1);
+    const handler = () => {
+      setHearts(h => {
+        const newCount = h + 1;
+
+        // Show popup on every second heart click
+        if (newCount % 2 === 0) {
+          setShowHeartPopup(true);
+          setTimeout(() => setShowHeartPopup(false), 3000);
+        }
+
+        return newCount;
+      });
+    };
+
     window.addEventListener('po-heart', handler);
     return () => window.removeEventListener('po-heart', handler);
   }, []);
@@ -15,6 +28,12 @@ export default function CatchUp() {
     alert('Thanks! I will reach out shortly.');
   };
 
+  // 🔥 NEW: Trigger po-heart event directly from heart click
+  const handleHeartClick = () => {
+    const ev = new CustomEvent('po-heart');
+    window.dispatchEvent(ev);
+  };
+
   return (
     <section className="catch-up">
       <h2>Let's Connect</h2>
@@ -22,17 +41,39 @@ export default function CatchUp() {
 
       <div className="quick-connect card">
         <h3>Wanna connect quickly?</h3>
-        <p>Double-click on Po (top-right) to send a heart — hearts received: <strong className="heart-count">{hearts} ❤️</strong></p>
+
+        <p>
+          Click the heart — hearts received:
+          <strong className="heart-count">
+            {hearts}
+
+            {/* CLICKABLE HEART NOW */}
+            <span
+              onClick={handleHeartClick}
+              style={{
+                cursor: 'pointer',
+                marginLeft: 6,
+                fontSize: 22
+              }}
+            >
+              ❤️
+            </span>
+
+          </strong>
+        </p>
       </div>
 
       <form className="contact-form card" onSubmit={handleSubmit}>
         <h3>Send a message</h3>
-        <input name="name" placeholder="Your name" required />
-        <input name="email" placeholder="Your email" type="email" required />
-        <textarea name="message" placeholder="Message" required />
-        <div style={{display:'flex', gap:8, marginTop:8}}>
-          <button className="btn" type="submit">Send</button>
-          <a className="btn ghost" href="mailto:ampiliveela@gmail">Email me</a>
+
+        <div className="form-grid">
+          <input className="form-box" name="name" placeholder="Your name" required />
+          <input className="form-box" name="email" placeholder="Your email" type="email" required />
+          <textarea className="form-box" name="message" placeholder="Message" required />
+        </div>
+
+        <div className="button-row">
+          <button className="btn form-box" type="submit">Send</button>
         </div>
       </form>
 
@@ -41,6 +82,15 @@ export default function CatchUp() {
         <p>Email: <a href="mailto:ampiliveela@gmail">ampiliveela@gmail.com</a></p>
         <p>GitHub: <a href="https://github.com/vineela-afk" target="_blank" rel="noreferrer">vineela-afk</a></p>
       </div>
+
+      {showHeartPopup && (
+        <div className="heart-popup" role="dialog" aria-live="polite">
+          <div className="heart-popup-box">
+            You sent {hearts} hearts ❤️
+            9441689944
+          </div>
+        </div>
+      )}
     </section>
   );
 }

@@ -8,7 +8,7 @@ export default function Home() {
     <main className="home">
       <section className="hero-grid">
         <div className="hero-left card">
-          <div className="eyebrow">SOFTWARE DEVELOPER | BACKEND</div>
+          <div className="eyebrow">SENIOR SOFTWARE DEVELOPER | GEN AI</div>
          <About></About>
           <div className="hero-ctas">
             <button className="btn projects-cta" onClick={() => navigate('/projects')}>See Projects</button>

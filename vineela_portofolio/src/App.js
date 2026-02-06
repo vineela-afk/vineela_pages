@@ -31,7 +31,7 @@ export default function App() {
       </main>
 
       <footer>
-        <p>Email: ampiliveela@gmail.com | GitHub: vineela-afk</p>
+        <p> Email: <a href="mailto:ampiliveela@gmail.com">ampiliveela@gmail.com</a> | GitHub <a href="https://github.com/vineela-afk" target="_blank" rel="noreferrer"></a>: vineela-afk</p>
       </footer>
     </div>
   );

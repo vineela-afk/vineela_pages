@@ -41,6 +41,14 @@ export default function Mascot() {
     heartTimer.current = setTimeout(() => setShowHeart(false), 900);
   };
 
+  const handleMascotMouseDown = () => {
+    setShowHeart(true);
+  };
+
+  const handleMascotMouseUp = () => {
+    setShowHeart(false);
+  };
+
   // show thought bubble first time
   const [showThought, setShowThought] = useState(false);
   const [showHeart, setShowHeart] = useState(false);
@@ -63,11 +71,10 @@ export default function Mascot() {
   const progress = (currentStep / (CHECKPOINTS.length - 1)) * 100;
 
   return (
-    <div className="mascot-nav" onClick={handleMascotClick} onDoubleClick={handleMascotDouble} role="button" tabIndex="0">
+    <div className="mascot-nav" onClick={handleMascotClick} onDoubleClick={handleMascotDouble} onMouseDown={handleMascotMouseDown} onMouseUp={handleMascotMouseUp} onMouseLeave={handleMascotMouseUp} role="button" tabIndex="0">
       <div className="mascot-track">
         {/* Progress bar */}
         <div className="progress-bar" style={{ width: `${progress}%` }} />
-        
         {/* Checkpoints */}
         {CHECKPOINTS.map((cp, idx) => (
           <div 
@@ -76,7 +83,7 @@ export default function Mascot() {
             style={{ left: `${(idx / (CHECKPOINTS.length - 1)) * 100}%` }}
           />
         ))}
-
+         
         {/* Running mascot */}
         <div 
           className={`mascot-runner ${isMoving ? 'moving' : ''}`}
@@ -88,11 +95,20 @@ export default function Mascot() {
           <span className="mascot-emoji">🧸</span>
         </div>
       </div>
-
-      {/* Labels */}
+          <div className="thought-bubble">I am Vinu's pet follow me</div>
+      {/* Labels positioned exactly at checkpoints */}
       <div className="checkpoint-labels">
         {CHECKPOINTS.map((cp, idx) => (
-          <span key={cp.id} className={`label ${idx === currentStep ? 'active' : ''}`}>
+          <span 
+            key={cp.id} 
+            className={`label ${idx === currentStep ? 'active' : ''}`}
+            style={{ 
+              position: 'absolute',
+              left: `${(idx / (CHECKPOINTS.length - 1)) * 100}%`,
+              transform: 'translateX(-50%)',
+              whiteSpace: 'nowrap'
+            }}
+          >
             {cp.label}
           </span>
         ))}
@@ -103,6 +119,7 @@ export default function Mascot() {
       {showHeart && (
         <div className="po-heart-pulse">❤️</div>
       )}
+
     </div>
   );
 }
