@@ -1,0 +1,302 @@
+
+.mascot-wrapper {
+  transform: scale(1.8);      /* larger mascot area under name */
+  transform-origin: top center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 28px 0 36px 0; 
+}
+
+
+.mascot-nav {
+  user-select: none;
+  cursor: pointer;
+  flex: 1;
+  max-width: 500px;
+}
+
+.mascot-track {
+  position: relative;
+  width: 100%;
+  height: 64px; /* taller progress bar */
+  background: linear-gradient(90deg, rgba(90,200,225,0.06), rgba(62,163,255,0.04));
+  border-radius: 10px;
+  border: 1px solid rgba(166,214,255,0.08);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  overflow: visible;
+}
+
+/* Progress bar */
+.progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(62,197,255,0.2), rgba(86,204,242,0.1));
+  transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 8px;
+}
+
+/* Checkpoint dots */
+.checkpoint-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(166,214,255,0.2);
+  border: 2px solid rgba(166,214,255,0.3);
+  transition: all 0.3s ease;
+}
+
+.checkpoint-dot.active {
+  background: #56ccf2;
+  border-color: #3ec5ff;
+  box-shadow: 0 0 12px rgba(62,197,255,0.8);
+  width: 12px;
+  height: 12px;
+}
+
+.checkpoint-dot.visited {
+  background: rgba(62,197,255,0.5);
+  border-color: #3ec5ff;
+}
+
+/* Running mascot */
+.mascot-runner {
+  position: absolute;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+  transition: none;
+}
+
+.mascot-runner.moving {
+  animation: poRun 0.4s steps(3) infinite;
+}
+
+@keyframes poRun {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(-1); }
+}
+
+.mascot-emoji {
+  display: inline-block;
+  filter: drop-shadow(0 0 6px rgba(62,197,255,0.4));
+}
+
+/* Checkpoint labels */
+.checkpoint-labels {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 8px;
+  font-size: 11px;
+  color: rgba(166,214,255,0.5);
+}
+
+.label {
+  transition: color 0.3s ease;
+}
+
+.label.active {
+  color: #9be7ff;
+  font-weight: 600;
+}
+
+.mascot-hint {
+  font-size: 12px;
+  color: rgba(166,214,255,0.5);
+  margin: 4px 0 0 0;
+  font-style: italic;
+}
+
+.thought-bubble.large {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg,#ffffff,#e6f7ff);
+  color: #041318;
+  padding: 18px 22px;
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(2,6,23,0.6);
+  font-size: 18px;
+  z-index: 80;
+  max-width: 200px;
+  text-align: center;
+}
+
+.po-heart-pulse {
+  position: absolute;
+  top: -28px;
+  right: 28px;
+  font-size: 24px;
+  animation: heartPop 0.9s ease-out;
+  pointer-events: none;
+  z-index: 90;
+}
+
+@keyframes heartPop {
+  0% { transform: scale(0.2); opacity: 0; }
+  40% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .header-top {
+    flex-direction: column;
+  }
+  .mascot-nav {
+    max-width: 100%;
+  }
+}
+
+/* Contact / Catch Up page */
+.catch-up {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-info {
+  margin-top: 24px;
+}
+
+.contact-info a {
+  color: #56ccf2;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.contact-info a:hover {
+  color: #041318;
+  text-decoration: underline;
+}
+
+.projects-rail {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 20px 10px;
+}
+
+.project-slide {
+  min-width: 520px;
+  min-height: 320px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: linear-gradient(135deg, #191607, #081d27);
+}
+
+.project-slide:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.project-slide.active {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #141a61, #1f0a7e);
+}
+
+.project-details {
+  margin-top: 10px;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.carousel-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.extra-experience {
+  margin-top: 30px;
+  padding: 15px;
+  background: #f0f9ff;
+  border-radius: 10px;
+}
+
+.thought-bubble {
+  position: absolute;
+  top: -90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  color: #222;
+  padding: 14px 18px;
+  border-radius: 25px;
+  font-size: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  animation: fadeIn 0.4s ease;
+  max-width: 240px;
+  text-align: center;
+}
+
+.bubble-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* Little cloud tails */
+.bubble-tail-1,
+.bubble-tail-2 {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.bubble-tail-1 {
+  width: 16px;
+  height: 16px;
+  bottom: -10px;
+  left: 20%;
+}
+
+.bubble-tail-2 {
+  width: 10px;
+  height: 10px;
+  bottom: -20px;
+  left: 30%;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.po-heart-pulse {
+  position: absolute;
+  top: -60px;
+  right: 20px;
+  font-size: 48px;       /* BIGGER HEART */
+  animation: heartPop 0.6s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.heart-count {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff3b6f;
+  background: white;
+  border-radius: 50%;
+  padding: 4px 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+@keyframes heartPop {
+  0% { transform: scale(0.6); }
+  60% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
